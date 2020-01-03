@@ -5,6 +5,34 @@
 </head>
 <body>
     <script>
+        function game() {
+            var i;
+            let playerScore = 0;
+            let computerScore = 0;
+            let outcome = "";
+            for (i = 0; i < 5; i++) {
+                let playerSelection = prompt("select something!");
+                let computerSelection = computerPlay();
+                outcome = playRound(playerSelection, computerSelection);
+
+                if (outcome == 'You Lose!') {
+                    computerScore++;
+                } else if (outcome == 'You Win!') {
+                    playerScore++;
+                };
+                console.log(`You selected ${playerSelection} and `, `the computer selected ${computerSelection}, so `, outcome);
+
+            };
+            if(playerScore>computerScore){
+                console.log(`You've won the game by a score of ${playerScore} to ${computerScore}!`)
+            } else if(playerScore == computerScore){
+                console.log(`You've tied the game by a score of ${playerScore} to ${computerScore}!`)
+            } else{
+                console.log(`You've lost the Game by a score of ${playerScore} to ${computerScore}!`)
+            };
+            
+            };
+            game();
         function computerPlay(){
             let choiceIdx = Math.floor(3*Math.random());
             let computerChoice = ["rock", "paper", "scissors"];
@@ -25,11 +53,33 @@
                     result = "Tie!"
                     return result
                     break;
+                case playerSelection.toLowerCase() == 'paper' && computerSelection.toLowerCase() == "paper":
+                    result = "Tie!"
+                    return result
+                    break;
+                case playerSelection.toLowerCase() == 'paper' && computerSelection.toLowerCase() == "scissors":
+                    result = "You Lose!"
+                    return result
+                    break;
+                case playerSelection.toLowerCase() == 'paper' && computerSelection.toLowerCase() == "rock":
+                    result = "You Win!"
+                    return result
+                    break;
+                case playerSelection.toLowerCase() == 'scissors' && computerSelection.toLowerCase() == "paper":
+                    result = "You Win!"
+                    return result
+                    break;
+                case playerSelection.toLowerCase() == 'scissors' && computerSelection.toLowerCase() == "scissors":
+                    result = "Tie!"
+                    return result
+                    break;
+                case playerSelection.toLowerCase() == 'scissors' && computerSelection.toLowerCase() == "rock":
+                    result = "You Lose!"
+                    return result
+                    break;
             }
         };
-        const playerSelection = "rock";
-        const computerSelection = computerPlay();
-        console.log(playRound(playerSelection, computerSelection));
+        
         
     </script>
 </body>
